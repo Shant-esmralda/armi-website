@@ -1,46 +1,140 @@
 # Armine Shahnazarian
 
-An elegant, music-inspired Astro website for a classical and pop singer and music teacher.
+### Where music finds its voice.
 
-## Current milestone
+An elegant, music-inspired portfolio for **Armine Shahnazarian**, a classical and pop singer and music teacher. Built with Astro and TypeScript, with a shared design in **English · فارسی · Հայերեն**.
 
-The Home page is available in English at `/`, Farsi at `/fa/` (right to left), and Armenian at `/hy/`. Language links navigate between fully rendered pages. The Home navigation currently leads to section previews for **Portfolio**, **Resources**, and **Contact**; their dedicated pages are the next milestone.
+![English Home page on desktop, with ivory and burgundy typography beside an arched piano photograph](docs/screenshots/home-desktop.png)
 
-The Portfolio will contain videos and audio. Resources will offer sheet music and student downloads. Recordings, downloads, and contact information are visibly marked as coming soon until real material is supplied.
+[Preview gallery](#preview-gallery) · [Quick start](#quick-start) · [Project structure](#project-structure) · [Roadmap](#roadmap) · [Contributing](#contributing)
 
-## Run locally
+## About the project
 
-Use the Node version required in `package.json` and npm:
+A quiet, editorial design brings together an introduction to the artist, her musical approach, and lesson previews. Ivory backgrounds, burgundy accents, brass details, and piano imagery carry the visual identity across desktop and mobile.
+
+- **Three languages:** separately rendered English, Farsi, and Armenian Home pages, with native-script language links and right-to-left Farsi layout.
+- **Responsive layout:** a spacious desktop hero, stacked mobile content, and a compact mobile navigation menu.
+- **Accessible foundations:** semantic HTML, translated accessible names, a keyboard skip link, and native expandable lesson details.
+- **Lightweight delivery:** static Astro output, locally hosted imagery, system fonts, and minimal client JavaScript.
+
+### Current status
+
+The **Home page is implemented in all three languages**. Portfolio, Resources, and Contact navigation currently leads to previews within Home. Dedicated pages, recordings, student downloads, and contact details are still planned; their availability is marked as coming soon.
+
+| Language | Local route | Direction |
+| --- | --- | --- |
+| English | `/` | Left to right |
+| فارسی — Farsi | `/fa/` | Right to left |
+| Հայերեն — Armenian | `/hy/` | Left to right |
+
+## Preview gallery
+
+Actual screenshots of the production build, captured at **1440 × 1050** on desktop and **390 × 1100** on mobile. Click an image to view it at its original size.
+
+### Mobile · three languages
+
+<table>
+  <tr><th>English</th><th>فارسی</th><th>Հայերեն</th></tr>
+  <tr>
+    <td><a href="docs/screenshots/home-mobile.png"><img src="docs/screenshots/home-mobile.png" width="240" alt="English Home page on mobile, with stacked introduction and piano image" /></a></td>
+    <td><a href="docs/screenshots/home-farsi-mobile.png"><img src="docs/screenshots/home-farsi-mobile.png" width="240" alt="Farsi Home page on mobile, with right-to-left text and navigation" /></a></td>
+    <td><a href="docs/screenshots/home-armenian-mobile.png"><img src="docs/screenshots/home-armenian-mobile.png" width="240" alt="Armenian Home page on mobile, with translated introduction and lesson links" /></a></td>
+  </tr>
+</table>
+
+<details>
+<summary><strong>View Farsi and Armenian desktop screenshots</strong></summary>
+
+### فارسی · Farsi
+
+![Farsi Home page on desktop, with right-to-left content and the piano image on the left](docs/screenshots/home-farsi.png)
+
+### Հայերեն · Armenian
+
+![Armenian Home page on desktop, with translated content and the piano image on the right](docs/screenshots/home-armenian.png)
+
+</details>
+
+## Quick start
+
+Use **Node.js 22.12.0 or newer** and npm. From the repository directory:
 
 ```sh
-npm install
+npm ci
 npm run dev -- --background
-npm run astro -- dev status
-npm run astro -- dev logs
-npm run astro -- dev stop
+```
+
+Open [localhost:4321](http://localhost:4321). The translated pages are available at [/fa/](http://localhost:4321/fa/) and [/hy/](http://localhost:4321/hy/).
+
+### Development commands
+
+| Command | Purpose |
+| --- | --- |
+| `npm run dev -- --background` | Start the development server in the background |
+| `npm run astro -- dev status` | Check the server status |
+| `npm run astro -- dev logs` | Read development logs |
+| `npm run astro -- dev stop` | Stop the development server |
+| `npm run build` | Create the static production build in `dist/` |
+| `npm run preview` | Serve the production build locally |
+
+To inspect production output:
+
+```sh
 npm run build
 npm run preview
 ```
 
-The development URL is normally http://localhost:4321. Production output is written to `dist/`.
+## Project structure
 
-## Edit content and design
+```text
+src/
+├── pages/
+│   ├── index.astro          # English Home
+│   └── [lang]/index.astro   # Farsi and Armenian Home
+├── components/
+│   ├── HomePage.astro       # Shared Home content
+│   └── Icon.astro           # Reusable icons
+├── layouts/
+│   └── Layout.astro         # Document, metadata, navigation, footer
+├── i18n/
+│   └── home.ts              # Artist identity and translated copy
+└── styles/
+    └── global.css           # Shared responsive styling
+public/
+└── images/
+    └── piano-hero.webp      # Optimized, locally hosted hero image
+docs/
+├── screenshots/            # Desktop and mobile repository previews
+└── image-provenance.md      # Hero image origin and generation prompt
+```
 
-- `AGENTS.md`: project requirements and contributor instructions.
-- `src/i18n/home.ts`: artist identity and all English, Farsi, and Armenian Home copy.
-- `src/components/HomePage.astro`: shared Home content.
-- `src/layouts/Layout.astro`: metadata, navigation, and footer.
-- `src/styles/global.css`: responsive ivory, burgundy, and brass styling.
-- `public/images/piano-hero.webp`: locally hosted, optimized hero image (1024 × 1280, approximately 100 KB).
+Edit content in [src/i18n/home.ts](src/i18n/home.ts), page markup in [src/components/HomePage.astro](src/components/HomePage.astro), and styling in [src/styles/global.css](src/styles/global.css). Keep content, navigation, metadata, and accessible names consistent across all three languages.
 
-No external fonts, media embeds, or third-party JavaScript are required for the Home page. Review the draft biography and translated copy with the artist before publication.
+## Roadmap
 
-## Image provenance
+- [x] Home page in English, Farsi, and Armenian
+- [x] Responsive design and language navigation
+- [x] Farsi right-to-left layout
+- [ ] Dedicated Portfolio page with authorized video and audio performances
+- [ ] Dedicated Resources page with authorized sheet music and student materials
+- [ ] Dedicated Contact page with owner-approved enquiry details
+- [ ] Artist review of the biography and translated copy before publication
 
-The piano image is original AI-generated illustrative imagery, created with the built-in imagegen tool. It is not a photograph of the artist’s actual studio. The full generation prompt was:
+## Contributing
 
-> Use case: photorealistic-natural. Asset type: portrait hero photograph for an elegant classical and pop singer and music teacher website. Primary request: an intimate editorial photograph of a black grand piano in a warm, quiet music studio. Composition: vertical 4:5 portrait, close oblique view across the piano keyboard from the lower left toward the right, open cream sheet music softly blurred above the keys, glossy ebony body and subtle walnut tones in the background. Natural late-afternoon window light, tactile film grain, restrained warm shadows, rich dark burgundy and amber undertones. Fine art music magazine photography, realistic keys in repeating groups of two and three black keys. No people, no instrument brand, no overlaid text, no logos, no watermarks. Output a single high quality photo, not a website mockup.
+Follow [AGENTS.md](AGENTS.md) for repository conventions. Use npm, preserve `package-lock.json`, and keep shared markup and translations in their existing locations. Consult the linked Astro documentation in the guidelines before changing routing, components, styling, or localization.
 
-## Validation
+Before submitting changes:
 
-The production build and temporary browser checks passed for all three languages at 1440, 390, and 320 pixels. Checks covered language navigation, correct document direction, image loading, page overflow, lesson disclosures, mobile navigation, Escape handling, and the keyboard skip link. No persistent test framework has been added.
+1. Run `npm run build` and inspect the result with `npm run preview`.
+2. Inspect all three languages on desktop and mobile.
+3. Check keyboard navigation, language links, Farsi direction, image loading, and horizontal overflow.
+4. Include desktop and mobile screenshots with visual changes.
+
+No test framework, formatter, or linter is currently configured. Screenshot capture for this README confirmed image loading, language routes, correct document direction, the keyboard skip link, and no horizontal overflow at both viewport sizes in all three languages.
+
+## Media and content
+
+Publish only media and sheet music the owner is authorized to distribute. Credentials, testimonials, contact details, recordings, and downloadable materials must come from the owner.
+
+The piano hero is **AI-generated illustrative imagery**, not a photograph of the artist’s actual studio. Its full generation prompt is preserved in [docs/image-provenance.md](docs/image-provenance.md).

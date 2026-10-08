@@ -1,0 +1,5 @@
+# Image provenance
+
+The piano image is original AI-generated illustrative imagery, created with the built-in imagegen tool. It is not a photograph of the artist’s actual studio. The full generation prompt was:
+
+> Use case: photorealistic-natural. Asset type: portrait hero photograph for an elegant classical and pop singer and music teacher website. Primary request: an intimate editorial photograph of a black grand piano in a warm, quiet music studio. Composition: vertical 4:5 portrait, close oblique view across the piano keyboard from the lower left toward the right, open cream sheet music softly blurred above the keys, glossy ebony body and subtle walnut tones in the background. Natural late-afternoon window light, tactile film grain, restrained warm shadows, rich dark burgundy and amber undertones. Fine art music magazine photography, realistic keys in repeating groups of two and three black keys. No people, no instrument brand, no overlaid text, no logos, no watermarks. Output a single high quality photo, not a website mockup.
