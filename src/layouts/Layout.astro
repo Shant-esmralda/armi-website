@@ -1,23 +1,73 @@
+---
+import '../styles/global.css';
+import Icon from '../components/Icon.astro';
+import { artist, homeCopy, homePath, languageNames, locales, type Locale } from '../i18n/home';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const copy = homeCopy[locale];
+const links = [
+  { label: copy.home, href: homePath(locale), current: true },
+  { label: copy.portfolio, href: '#portfolio', current: false },
+  { label: copy.resources, href: '#resources', current: false },
+  { label: copy.contact, href: '#contact', current: false },
+];
+---
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang={locale} dir={locale === 'fa' ? 'rtl' : 'ltr'}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={copy.description} />
+    <meta name="theme-color" content="#f7f4ed" />
+    <meta name="generator" content={Astro.generator} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={copy.title} />
+    <meta property="og:description" content={copy.description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {locales.map((language) => <link rel="alternate" hreflang={language} href={homePath(language)} />)}
+    <link rel="alternate" hreflang="x-default" href="/" />
+    <title>{copy.title}</title>
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#main">{copy.skip}</a>
+    <header class="site-header container">
+      <a class="wordmark" href={homePath(locale)} aria-label={artist.name} lang="en" dir="ltr">
+        <span class="brand-symbol"><Icon name="music" /></span>
+        <span class="brand-name">Armine<span class="brand-surname">SHAHNAZARIAN</span></span>
+      </a>
+      <nav class="desktop-nav" aria-label={copy.navigation}>
+        {links.map((link) => <a href={link.href} aria-current={link.current ? 'page' : undefined}>{link.label}</a>)}
+      </nav>
+      <nav class="language-switch" aria-label={copy.languages} dir="ltr">
+        {locales.map((language) => <a href={homePath(language)} lang={language} hreflang={language} aria-current={language === locale ? 'true' : undefined}>{language === 'en' ? 'EN' : languageNames[language]}</a>)}
+      </nav>
+      <details class="mobile-menu">
+        <summary><span class="sr-only">{copy.menu}</span><span class="menu-lines" aria-hidden="true"></span></summary>
+        <nav aria-label={copy.navigation}>
+          {links.map((link) => <a href={link.href} aria-current={link.current ? 'page' : undefined}>{link.label}</a>)}
+        </nav>
+      </details>
+    </header>
+    <main id="main" tabindex="-1"><slot /></main>
+    <footer class="site-footer container">
+      <div><span class="footer-name" lang="en" dir="ltr">{artist.name}</span><p>{copy.footerNote}</p></div>
+      <p class="copyright"><bdi>© {new Date().getFullYear()}</bdi> · {copy.footerRights}</p>
+      <a href="#top" class="back-top">{copy.backTop}<Icon name="arrow" /></a>
+    </footer>
+    <script>
+      document.querySelectorAll('.mobile-menu nav a').forEach((link) => {
+        link.addEventListener('click', () => {
+          const menu = link.closest('details');
+          if (menu) menu.open = false;
+        });
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape') return;
+        document.querySelectorAll<HTMLDetailsElement>('.mobile-menu[open]').forEach((menu) => {
+          menu.open = false;
+          menu.querySelector('summary')?.focus();
+        });
+      });
+    </script>
+  </body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

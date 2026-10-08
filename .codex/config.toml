@@ -1,0 +1,12 @@
+# Project-local permissions for new Codex sessions.
+# Local command writes are limited to this exact project directory.
+default_permissions = "armi-only"
+approval_policy = "never"
+
+[permissions.armi-only]
+description = "Write access throughout the Armine website folder, including Git metadata."
+
+[permissions.armi-only.filesystem]
+":root" = "read"
+'C:\Users\Lion\Documents\GitHub\armi-website' = "write"
+'C:\Users\Lion\Documents\GitHub\armi-website\.git' = "write"
