@@ -1,10 +1,14 @@
 ---
 interface Props {
-  name: 'arrow' | 'music' | 'spark' | 'book' | 'wave' | 'score';
+  name: 'arrow' | 'music' | 'spark' | 'book' | 'wave' | 'score' | 'phone' | 'whatsapp' | 'telegram' | 'instagram';
   class?: string;
 }
 const { name, class: className } = Astro.props;
 const paths = {
+  phone: ['M7 3H4a1 1 0 0 0-1 1c0 9.4 7.6 17 17 17a1 1 0 0 0 1-1v-3l-5-2-2 2a14 14 0 0 1-7-7l2-2-2-5Z'],
+  whatsapp: ['M21 11.5a9 9 0 0 1-13.4 7.9L3 21l1.5-4.7A9 9 0 1 1 21 11.5Z', 'm8 7-1 2c1 3 3 5 6 6l2-1-2-2-1 1-3-3 1-1-2-2Z'],
+  telegram: ['m22 3-4 18-6-5-4 3v-6L2 11 22 3Z', 'm8 13 14-10-10 13'],
+  instagram: ['M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Z', 'M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z', 'M17.5 6.5h.01'],
   arrow: ['M5 12h14', 'm13 6 6 6-6 6'],
   music: ['M9 18V5l11-2v13', 'M9 8l11-2', 'M9 18c0 1.7-1.8 3-4 3s-3-1.1-3-2.5S3.8 16 6 16c1.2 0 2.2.3 3 .8', 'M20 16c0 1.7-1.8 3-4 3s-3-1.1-3-2.5S14.8 14 17 14c1.2 0 2.2.3 3 .8'],
   spark: ['M12 2c0 7-3 10-10 10 7 0 10 3 10 10 0-7 3-10 10-10-7 0-10-3-10-10Z'],

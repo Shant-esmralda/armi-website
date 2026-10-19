@@ -151,6 +151,34 @@
   .contact-inner h2 { font-size: 52px; margin-block: 18px 23px; }
   .contact-inner p:not(.eyebrow) { color: #ddcbd0; font-size: 14px; max-width: 550px; margin-inline: auto; }
   .contact-status { display: inline-block; font-size: 11px; border-bottom: 1px solid #b88f98; margin-block-start: 28px; padding-block-end: 5px; color: #eadcdf; }
+  .contact-status:hover { color: var(--paper); border-color: var(--paper); }
+  .contact-status:focus-visible { outline-color: var(--paper); }
+  .contact-hero { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: center; padding-block: 86px 94px; }
+  .contact-page-copy { min-width: 0; }
+  .contact-page-intro { max-width: 475px; font-size: 15px; line-height: 1.9; }
+  .contact-icon { display: grid; place-items: center; width: 50px; height: 50px; border: 1px solid #d7ccbb; border-radius: 50%; color: var(--gold); }
+  .contact-icon svg { width: 25px; height: 25px; }
+  .phone-panel { position: relative; background: var(--wine); color: var(--paper); padding: 48px 40px; min-width: 0; }
+  .phone-panel .contact-icon { color: #d0b78a; border-color: #a8757c; margin-block-end: 28px; }
+  .phone-panel h2 { font-size: 34px; letter-spacing: -.5px; margin-block-end: 18px; overflow-wrap: anywhere; }
+  .phone-panel > p { color: #ddcbd0; font-size: 14px; }
+  .phone-panel .phone-placeholder { margin-block-start: 32px; padding-block-start: 22px; border-top: 1px solid #a8757c; font-size: 12px; color: #eadcdf; }
+  .phone-number { display: inline-block; max-width: 100%; overflow-wrap: anywhere; margin-block-start: 28px; padding-block-end: 4px; border-bottom: 1px solid #b88f98; font-size: 24px; }
+  .phone-number:hover { border-color: var(--paper); }
+  .phone-number:focus-visible { outline-color: var(--paper); }
+  .phone-ornament { position: absolute; inset-block-start: 38px; inset-inline-end: 34px; color: #c5ac80; }
+  .phone-ornament svg { width: 26px; height: 26px; }
+  .socials-section { background: #eeeee6; border-block: 1px solid #e4e3d8; }
+  .social-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin-block-start: 44px; }
+  .social-card { display: flex; flex-direction: column; align-items: start; padding: 32px; background: var(--paper); border: 1px solid #e0dfd4; }
+  .social-card h3 { margin-block: 26px 16px; }
+  .social-card > p { font-size: 13px; margin-block-end: 28px; }
+  .social-card-footer { width: 100%; margin-block-start: auto; padding-block-start: 18px; border-top: 1px solid var(--line); }
+  .social-placeholder { display: flex; gap: 9px; align-items: baseline; font-size: 11px; }
+  .social-placeholder .tiny-dot { color: var(--gold); }
+  .social-card .text-link { color: var(--wine); font-size: 12px; }
+  .social-card .text-link svg { width: 16px; height: 16px; }
+  [dir='rtl'] .social-card .text-link svg { transform: rotate(180deg); }
   .site-footer { padding-block: 39px; display: flex; align-items: center; gap: 30px; justify-content: space-between; }
   .footer-name { display: inline-block; font-family: Georgia, serif; font-size: 18px; color: var(--wine); }
   .site-footer p { font-size: 10px; margin-block-start: 3px; }
@@ -212,6 +240,11 @@
     .resources-section h2 { font-size: 34px; }
     .contact-section { margin-block-start: 80px; }
     .contact-inner h2 { font-size: 44px; }
+    .contact-hero { gap: 35px; padding-block: 65px; }
+    .phone-panel { padding: 35px 28px; }
+    .phone-panel h2 { font-size: 29px; }
+    .social-grid { gap: 14px; }
+    .social-card { padding: 24px; }
   }
   @media (max-width: 650px) {
     .container { width: calc(100% - 40px); }
@@ -266,6 +299,13 @@
     .contact-section { margin-block-start: 62px; }
     .contact-inner h2 { font-size: 38px; }
     .contact-inner p:not(.eyebrow) { font-size: 13px; }
+    .contact-hero { grid-template-columns: 1fr; gap: 36px; padding-block: 42px 54px; }
+    .contact-page-intro { font-size: 14px; }
+    .contact-page-copy .hero-note { align-items: start; }
+    .phone-panel { padding: 32px 27px; }
+    .phone-panel h2 { font-size: 30px; }
+    .social-grid { grid-template-columns: 1fr; gap: 18px; margin-block-start: 32px; }
+    .social-card { padding: 27px; }
     .site-footer { flex-wrap: wrap; row-gap: 23px; padding-block: 31px; }
     .site-footer > div { flex: 1 1 100%; }
     .site-footer .copyright { margin-inline-end: auto; }

@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Icon from './Icon.astro';
 import { homeCopy, type Locale } from '../i18n/home';
+import { contactPath } from '../i18n/contact';
 interface Props { locale: Locale }
 const { locale } = Astro.props;
 const copy = homeCopy[locale];
@@ -51,6 +52,6 @@ const copy = homeCopy[locale];
     <ul class="resource-list"><li><Icon name="score" /><span>{copy.sheetMusic}</span></li><li><Icon name="book" /><span>{copy.practice}</span></li><li><Icon name="music" /><span>{copy.theory}</span></li></ul>
   </section>
   <section id="contact" class="contact-section section-space" aria-labelledby="contact-title">
-    <div class="container contact-inner"><Icon name="spark" /><p class="eyebrow">{copy.contactLabel}</p><h2 id="contact-title">{copy.contactTitle}</h2><p>{copy.contactText}</p><span class="contact-status">{copy.contactSoon}</span></div>
+    <div class="container contact-inner"><Icon name="spark" /><p class="eyebrow">{copy.contactLabel}</p><h2 id="contact-title">{copy.contactTitle}</h2><p>{copy.contactText}</p><a class="contact-status" href={contactPath(locale)}>{copy.contact}</a></div>
   </section>
 </Layout>

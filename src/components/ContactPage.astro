@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from './Icon.astro';
+import { contactCopy, contactDetails } from '../i18n/contact';
+import type { Locale } from '../i18n/home';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const copy = contactCopy[locale];
+const socials = [
+  { icon: 'whatsapp', name: copy.whatsapp, text: copy.whatsappText, action: copy.whatsappAction, url: contactDetails.whatsappUrl },
+  { icon: 'telegram', name: copy.telegram, text: copy.telegramText, action: copy.telegramAction, url: contactDetails.telegramUrl },
+  { icon: 'instagram', name: copy.instagram, text: copy.instagramText, action: copy.instagramAction, url: contactDetails.instagramUrl },
+] as const;
+---
+<Layout locale={locale} page="contact" title={copy.title} description={copy.description}>
+  <section class="contact-hero container" aria-labelledby="contact-page-title">
+    <div class="contact-page-copy">
+      <p class="eyebrow hero-eyebrow"><span class="tiny-dot" aria-hidden="true"></span>{copy.eyebrow}</p>
+      <h1 id="contact-page-title">{copy.heading}<br /><em>{copy.headingAccent}</em></h1>
+      <p class="contact-page-intro">{copy.intro}</p>
+      <p class="hero-note"><Icon name="wave" />{copy.note}</p>
+    </div>
+    <section class="phone-panel" aria-labelledby="phone-title">
+      <span class="contact-icon"><Icon name="phone" /></span>
+      <h2 id="phone-title">{copy.phoneLabel}</h2>
+      <p>{copy.phoneText}</p>
+      {contactDetails.phoneNumber ? (
+        <a class="phone-number" dir="ltr" href={'tel:' + contactDetails.phoneNumber.replace(/[^+\d]/g, '')}>{contactDetails.phoneNumber}</a>
+      ) : (
+        <p class="phone-placeholder">{copy.phonePlaceholder}</p>
+      )}
+      <span class="phone-ornament" aria-hidden="true"><Icon name="spark" /></span>
+    </section>
+  </section>
+  <section class="socials-section section-space" aria-labelledby="socials-title">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">{copy.socialsLabel}</p>
+        <h2 id="socials-title">{copy.socialsTitle}</h2>
+        <p>{copy.socialsText}</p>
+      </div>
+      <div class="social-grid">
+        {socials.map((social) => (
+          <article class="social-card">
+            <span class="contact-icon"><Icon name={social.icon} /></span>
+            <h3>{social.name}</h3>
+            <p>{social.text}</p>
+            <div class="social-card-footer">
+              {social.url ? (
+                <a class="text-link" href={social.url}>{social.action}<Icon name="arrow" /></a>
+              ) : (
+                <p class="social-placeholder"><span class="tiny-dot" aria-hidden="true"></span>{copy.profilePlaceholder}</p>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
