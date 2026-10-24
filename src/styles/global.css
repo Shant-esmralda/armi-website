@@ -29,7 +29,10 @@
   h3 { font-size: 28px; letter-spacing: -.5px; }
   p { color: var(--muted); }
   svg { flex-shrink: 0; }
-  [lang='fa'] { --serif: Tahoma, 'Segoe UI', Arial, sans-serif; }
+  html[lang='fa'] {
+    --sans: 'Vazirmatn', Tahoma, 'Segoe UI', Arial, sans-serif;
+    --serif: var(--sans);
+  }
   html[lang='fa'] h1, html[lang='fa'] h2, html[lang='fa'] h3 { letter-spacing: 0; line-height: 1.6; }
   html[lang='hy'] h1 { font-size: clamp(42px, 4.5vw, 66px); }
   html[lang='hy'] h2 { font-size: clamp(30px, 3.1vw, 42px); }
@@ -52,11 +55,14 @@
   .brand-symbol { display: grid; place-items: center; height: 44px; width: 35px; border-inline-end: 1px solid #c9b99d; padding-inline-end: 11px; }
   .brand-symbol svg { width: 26px; height: 26px; }
   .brand-name { font-family: Georgia, serif; font-size: 31px; line-height: 1; }
-  .brand-surname { display: block; margin-block-start: 8px; font-family: var(--sans); font-size: 8px; letter-spacing: 2.5px; }
+  .brand-surname { display: block; margin-block-start: 8px; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; font-size: 8px; letter-spacing: 2.5px; }
   .desktop-nav { display: flex; gap: 31px; align-items: center; }
   .desktop-nav a { font-size: 13px; color: var(--muted); position: relative; padding-block: 10px; }
   .desktop-nav a:hover, .desktop-nav a[aria-current] { color: var(--wine); }
   .desktop-nav a[aria-current]::after { content: ''; position: absolute; height: 2px; background: var(--wine); width: 16px; inset-block-end: 1px; inset-inline-start: 0; }
+  /* The English wordmark is LTR; let the RTL navigation own header spacing. */
+  html[lang='fa'] .wordmark { margin-inline-end: 0; }
+  html[lang='fa'] .desktop-nav { margin-inline-end: auto; }
   .language-switch { display: flex; align-items: center; gap: 12px; padding-inline-start: 24px; border-inline-start: 1px solid var(--line); }
   .language-switch a { font-size: 11px; color: var(--muted); padding-block: 9px; white-space: nowrap; }
   .language-switch a[aria-current] { color: var(--wine); font-weight: 700; }
@@ -253,6 +259,8 @@
     .site-header { min-height: 95px; }
     .desktop-nav { display: none; }
     .mobile-menu { display: block; }
+    html[lang='fa'] .mobile-menu { order: -1; }
+    html[lang='fa'] .wordmark { margin-inline-start: auto; }
     .mobile-menu > summary { cursor: pointer; width: 36px; height: 42px; display: grid; place-items: center; list-style: none; }
     .menu-lines { display: block; width: 21px; height: 12px; border-block: 1.5px solid var(--wine); }
     .mobile-menu[open] .menu-lines { height: 2px; transform: rotate(-30deg); }

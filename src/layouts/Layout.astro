@@ -35,6 +35,13 @@ const links = [
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={pageDescription} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {locale === 'fa' && (
+      <>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet" />
+      </>
+    )}
     {locales.map((language) => <link rel="alternate" hreflang={language} href={pagePath(language)} />)}
     <link rel="alternate" hreflang="x-default" href={pagePath('en')} />
     <title>{pageTitle}</title>
