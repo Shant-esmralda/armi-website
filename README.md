@@ -88,6 +88,29 @@ npm run build
 npm run preview
 ```
 
+## GitHub Pages deployment
+
+This is an Astro project. GitHub Pages must deploy the built `dist/` directory through GitHub Actions; its default Jekyll build cannot parse `.astro` components.
+
+1. Commit and push these changes to `master`, including `.github/workflows/deploy.yml`.
+2. Open the repository's **Settings → Pages → Build and deployment** and set **Source** to **GitHub Actions**.
+3. Open **Actions → Deploy Astro to GitHub Pages** and run the workflow if the push run has not already succeeded.
+
+The workflow builds with npm and Node 24, uploads `dist/`, and deploys it to `https://shant-esmralda.github.io/armi-website/`. It runs on pushes to `master` and can also be run manually. No personal access token is required.
+
+Local development uses `/`. The workflow supplies `--base /armi-website`; page links, language links, images, and local media use that base automatically. Keep media paths in `src/content/media.ts` written as `/media/...` without adding the repository name.
+
+To verify the GitHub Pages layout locally:
+
+```sh
+npm run build -- --base /armi-website
+npm run preview -- --base /armi-website
+```
+
+Open `http://localhost:4321/armi-website/`. For a future custom domain, update `site` in `astro.config.mjs` and remove the `--base /armi-website` argument from the workflow.
+
+See the [Astro GitHub Pages guide](https://docs.astro.build/en/guides/deploy/github/) for the deployment and Pages source settings.
+
 ## Project structure
 
 ```text

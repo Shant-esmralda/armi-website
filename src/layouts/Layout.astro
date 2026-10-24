@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { withBase } from '../utils/paths';
 import Icon from '../components/Icon.astro';
 import { artist, homeCopy, homePath, languageNames, locales, type Locale } from '../i18n/home';
 import { contactPath } from '../i18n/contact';
@@ -34,7 +35,7 @@ const links = [
     <meta property="og:type" content="website" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={pageDescription} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
     {locale === 'fa' && (
       <>
         <link rel="preconnect" href="https://fonts.googleapis.com" />

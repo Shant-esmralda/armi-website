@@ -1,3 +1,5 @@
+import { withBase } from '../utils/paths';
+
 export const locales = ['en', 'fa', 'hy'] as const;
 export type Locale = (typeof locales)[number];
 
@@ -5,7 +7,7 @@ export const artist = { name: 'Armine Shahnazarian' };
 export const languageNames: Record<Locale, string> = {
   en: 'English', fa: 'فارسی', hy: 'Հայերեն',
 };
-export const homePath = (locale: Locale) => locale === 'en' ? '/' : '/' + locale + '/';
+export const homePath = (locale: Locale) => withBase(locale === 'en' ? '/' : '/' + locale + '/');
 
 interface Lesson {
   number: string;

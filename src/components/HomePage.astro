@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { withBase } from '../utils/paths';
 import Icon from './Icon.astro';
 import { homeCopy, type Locale } from '../i18n/home';
 import { contactPath } from '../i18n/contact';
@@ -22,7 +23,7 @@ const copy = homeCopy[locale];
     </div>
     <figure class="hero-visual">
       <div class="photo-mat">
-        <img class="hero-image" src="/images/piano-hero.webp" alt={copy.imageAlt} width="1024" height="1280" fetchpriority="high" />
+        <img class="hero-image" src={withBase('/images/piano-hero.webp')} alt={copy.imageAlt} width="1024" height="1280" fetchpriority="high" />
         <figcaption class="photo-caption"><span class="caption-line"></span>{copy.imageCaption}</figcaption>
       </div>
       <div class="image-card"><span class="image-card-icon"><Icon name="music" /></span><div><strong>{copy.imageCardTitle}</strong><span>{copy.imageCardText}</span></div></div>
