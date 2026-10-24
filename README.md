@@ -19,7 +19,11 @@ A quiet, editorial design brings together an introduction to the artist, her mus
 
 ### Current status
 
-The **Home page is implemented in all three languages**. Portfolio, Resources, and Contact navigation currently leads to previews within Home. Dedicated pages, recordings, student downloads, and contact details are still planned; their availability is marked as coming soon.
+**Home, About, Resources, and Contact are implemented in all three languages.** About includes a portfolio for uploaded videos and YouTube embeds; Resources supports downloadable PDF sheet music and playable/downloadable warmup audio. Media sections remain empty until authorized content is added. Contact details still need to be supplied.
+
+English pages: `/`, `/about/`, `/resources/`, and `/contact/`. Add `/fa` or `/hy` before any route for Farsi or Armenian. The language switch preserves the current page.
+
+To add videos, sheet music, or audio, see [Adding media](docs/adding-media.md). Files are managed in the repository and published with a rebuild; there is no browser upload area.
 
 | Language | Local route | Direction |
 | --- | --- | --- |
@@ -115,9 +119,10 @@ Edit content in [src/i18n/home.ts](src/i18n/home.ts), page markup in [src/compon
 - [x] Home page in English, Farsi, and Armenian
 - [x] Responsive design and language navigation
 - [x] Farsi right-to-left layout
-- [ ] Dedicated Portfolio page with authorized video and audio performances
-- [ ] Dedicated Resources page with authorized sheet music and student materials
-- [ ] Dedicated Contact page with owner-approved enquiry details
+- [x] About page with a performance-video portfolio
+- [x] Resources page supporting sheet music and practice audio
+- [x] Dedicated Contact page
+- [ ] Add owner-approved recordings, student materials, and contact details
 - [ ] Artist review of the biography and translated copy before publication
 
 ## Contributing

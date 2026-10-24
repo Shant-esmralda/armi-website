@@ -1,0 +1,10 @@
+---
+import AboutPage from '../../components/AboutPage.astro';
+import type { Locale } from '../../i18n/home';
+
+export function getStaticPaths() {
+  return ['fa', 'hy'].map((lang) => ({ params: { lang } }));
+}
+const locale = Astro.params.lang as Locale;
+---
+<AboutPage locale={locale} />

@@ -1,0 +1,68 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from './Icon.astro';
+import { homeCopy, type Locale } from '../i18n/home';
+import { libraryCopy } from '../i18n/library';
+import { contactPath } from '../i18n/contact';
+import { resources } from '../content/media';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const copy = libraryCopy[locale];
+const home = homeCopy[locale];
+const categories = [
+  { id: 'sheet-music', title: home.sheetMusic, text: copy.sheetMusicText, empty: copy.sheetsEmpty, icon: 'score' },
+  { id: 'audio', title: copy.warmups, text: copy.warmupsText, empty: copy.audioEmpty, icon: 'wave' },
+] as const;
+---
+<Layout locale={locale} page="resources" title={copy.resourcesTitle} description={copy.resourcesDescription}>
+  <section class="library-hero container" aria-labelledby="resources-page-title">
+    <p class="eyebrow hero-eyebrow"><span class="tiny-dot" aria-hidden="true"></span>{home.resourcesLabel}</p>
+    <h1 id="resources-page-title">{copy.resourcesHeading}<br /><em>{copy.resourcesAccent}</em></h1>
+    <p class="library-intro">{copy.resourcesIntro}</p>
+    <nav class="resource-jumps" aria-label={home.resources}>
+      {categories.map((category) => <a class="text-link" href={'#' + category.id}><Icon name={category.icon} />{category.title}</a>)}
+    </nav>
+  </section>
+  <div class="resource-library container">
+    {categories.map((category) => {
+      const entries = resources.filter((resource) => resource.kind === category.id);
+      return (
+        <section id={category.id} class="resource-category" aria-labelledby={category.id + '-title'}>
+          <div class="resource-category-heading">
+            <span class="contact-icon"><Icon name={category.icon} /></span>
+            <div><h2 id={category.id + '-title'}>{category.title}</h2><p>{category.text}</p></div>
+          </div>
+          {entries.length ? (
+            <div class="download-grid">
+              {entries.map((resource) => (
+                <article class="download-card" aria-labelledby={'resource-' + resource.id}>
+                  <h3 id={'resource-' + resource.id}>{resource.title[locale]}</h3>
+                  <p>{resource.description[locale]}</p>
+                  {resource.kind === 'audio' && (
+                    <audio controls preload="none" aria-labelledby={'resource-' + resource.id}>
+                      <source src={resource.src} />
+                      <p>{copy.audioFallback}</p>
+                    </audio>
+                  )}
+                  <a class="text-link" href={resource.src} download>
+                    {resource.kind === 'sheet-music' ? copy.downloadPdf : copy.downloadAudio}
+                    {resource.kind === 'sheet-music' && <bdi class="file-format">PDF</bdi>}
+                    <span class="sr-only">: {resource.title[locale]}</span><Icon name="arrow" />
+                  </a>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <p class="resource-empty">{category.empty}</p>
+          )}
+        </section>
+      );
+    })}
+    <aside class="practice-panel">
+      <Icon name="spark" />
+      <div><h2>{copy.practiceNote}</h2><p>{copy.practiceText}</p></div>
+      <a class="text-link" href={contactPath(locale)}>{copy.contactLink}<Icon name="arrow" /></a>
+    </aside>
+  </div>
+</Layout>

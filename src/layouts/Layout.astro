@@ -3,9 +3,10 @@ import '../styles/global.css';
 import Icon from '../components/Icon.astro';
 import { artist, homeCopy, homePath, languageNames, locales, type Locale } from '../i18n/home';
 import { contactPath } from '../i18n/contact';
+import { aboutPath, resourcesPath, libraryCopy } from '../i18n/library';
 interface Props {
   locale: Locale;
-  page?: 'home' | 'contact';
+  page?: 'home' | 'contact' | 'about' | 'resources';
   title?: string;
   description?: string;
 }
@@ -13,11 +14,12 @@ const { locale, page = 'home', title, description } = Astro.props;
 const copy = homeCopy[locale];
 const pageTitle = title ?? copy.title;
 const pageDescription = description ?? copy.description;
-const pagePath = (language: Locale) => page === 'contact' ? contactPath(language) : homePath(language);
+const pagePaths = { home: homePath, contact: contactPath, about: aboutPath, resources: resourcesPath };
+const pagePath = pagePaths[page];
 const links = [
   { label: copy.home, href: homePath(locale), current: page === 'home' },
-  { label: copy.portfolio, href: homePath(locale) + '#portfolio', current: false },
-  { label: copy.resources, href: homePath(locale) + '#resources', current: false },
+  { label: libraryCopy[locale].about, href: aboutPath(locale), current: page === 'about' },
+  { label: copy.resources, href: resourcesPath(locale), current: page === 'resources' },
   { label: copy.contact, href: contactPath(locale), current: page === 'contact' },
 ];
 ---
